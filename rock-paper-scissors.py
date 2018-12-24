@@ -2,13 +2,14 @@ import time
 import random
 import sys
 
-score = {"user":0, "cpu":0}
+score = {"wins":0, "losses":0}
 
 def rps_game(score):
-    valid_choice = ["rock", "paper", "scissors"]
+    triangle = {"rock": "scissors", "scissors": "paper", "paper": "rock"}
     user_choice = input(print_slow("Welcome to the game. Please choose either rock, paper or scissors:"))
-    
-    while user_choice not in valid_choice:
+    valid_choice = list(triangle.keys())
+
+    while user_choice not in triangle.keys():
         user_choice = input(print_slow("Sorry, that isn't a valid choice, please choose rock, paper, or scissors: "))
 
     print_slow("You chose: " + user_choice + "\n")
@@ -17,35 +18,16 @@ def rps_game(score):
     result_states = {"w":"You win!", "l":"Sorry, you lost this time...", "t":"Tie game!"}
     result = ""
 
-    if user_choice == "rock":
-        if cpu_choice == "rock":
-            result = result_states["t"]
-        elif cpu_choice == "paper":
-            result = result_states["l"]
-            score["cpu"] += 1
-        elif cpu_choice == "scissors": 
-            result = result_states["w"]
-            score["user"] += 1
+    if triangle[user_choice] == cpu_choice:
+        result = result_states["w"]
+        score["wins"] += 1
     
-    elif user_choice == "paper":
-        if cpu_choice == "rock":
-            result = result_states["w"]
-            score["user"] += 1
-        elif cpu_choice == "paper":
-            result = result_states["t"]
-        elif cpu_choice == "scissors": 
-            result = result_states["l"]
-            score["cpu"] += 1
+    elif user_choice == cpu_choice:
+        result = result_states["t"]
     
-    elif user_choice == "scissors":
-        if cpu_choice == "rock":
-            result = result_states["l"]
-            score["cpu"] += 1
-        elif cpu_choice == "paper":
-            result = result_states["w"]
-            score["user"] += 1
-        elif cpu_choice == "scissors": 
-            result = result_states["t"]
+    elif triangle[cpu_choice] == user_choice:
+        result = result_states["l"]
+        score["losses"] += 1
 
     print_slow("Your opponent chose:\n")
     print_slow(". . .\n", 0.5)
@@ -55,7 +37,7 @@ def rps_game(score):
     play_again(score)
 
 def play_again(score):
-    print_slow("The current score is: Wins(%d) Losses(%d)\n" %(score["user"], score["cpu"]))
+    print_slow("The current score is: Wins(%d) Losses(%d)\n" %(score["wins"], score["losses"]))
     again = input(print_slow("Would you like to play again? y/n:"))
 
     if again == "y":
