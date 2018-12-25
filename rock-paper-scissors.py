@@ -61,3 +61,5 @@ def print_slow(str, value = None):
     return "\n"
 
 rps_game(score)
+
+# TODO: Import game_functions instead of defining locally
