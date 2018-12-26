@@ -1,67 +1,57 @@
+import getpass #TODO add for 2p version
 import string
 
 import game_functions as core
 
 def main_game():
-    lives = 7
     guess_pool = list(string.ascii_lowercase)
-    word = list("montypython") # TODO get random English word from list of common hangman words
-    display_word = 
+    
+    target = getpass.getpass("What is the target word?\n") # TODO add for 2p version
+    #target = "cat" # TODO get random word from list of common hangman words
+    target_list = list(target)
+    letters_remaining = []
 
-    while lives < 0:
-        for i in display_word:
+    for i in target:
+        if i not in letters_remaining:
+            letters_remaining.append(i)
+    
+    check_word = "*" * len(target) # TODO allow for target with multiple words
+    check_list = list(check_word)
+    
+    core.print_slow("Welcome to Hangman, good luck guessing the word!\nHere is the word you need to solve:\n")
+    core.print_slow("".join(check_list) + "\n")
 
+    lives = 6
+    while lives > 0:
+        user_guess = input(core.print_slow("Your guess:")) # TODO won't print slow
 
-
-        for i in display_word:
-            core.print_slow("")
-
-        user_guess = core.print_slow(input("Your guess:"))
-
-        if user_guess in word:
-            pass
+        if user_guess not in guess_pool:
+            core.print_slow("That guess is either not valid or has already been used, please guess again.\n")
         
-        elif user_guess not in word:
-            core.print_slow("Sorry, that letter isn't in the word... \
-            Please guess again.")
+        elif user_guess not in letters_remaining:
+            core.print_slow("That letter isn't in the word... Please guess again.\n")
             
             lives -= 1
+            core.print_slow("You have %s guesses remaining.\n" %(str(lives)))
         
+        elif user_guess in letters_remaining:
+            guess_pool.remove(user_guess)
+            letters_remaining.remove(user_guess)
+        
+            store_index = [i for i, x in enumerate(target_list) if x == user_guess]
+            for i in store_index:
+                check_list[i] = user_guess
+        
+        core.print_slow("".join(check_list) + "\n")
 
+        if len(letters_remaining) == 0:
+            return core.print_slow("You've won!\n")
+
+    return core.print_slow("Sorry you ran out of tries! The word you were trying to guess was: \n%s\n" %(target))
     
-    core.print_slow("Sorry you ran out of tries! The word you were \
-    trying to guess was: \n%s" %(word))
-    
-    core.play_again()
-    
-    
-    if again == "y":
-        print("Cool, let's go again then!")
-    elif again == "n":
-        print("That's alright, another time perhaps.")
-    else:
-        print("")
+def main():
+    main_game()
+    core.play_again(main_game)
 
-
-
-    """ 
-    Welcome to the game
-    
-    Display word with hidden letters _ _ _ _
-    
-    Ask for guess letter
-    
-    Check if valid or already used and reask if not
-
-    Check if guess matches letter in word
-
-    If True, display word with proper "_" revealed
-
-    If False, show how many tries they have left and ask for new letter
-
-    Check if word is complete, if so, display win, if not, ask for another letter
-
-    If tries = 0 display loss, reveal full word, ask if they want to play again
-"""
-
-# TODO: def __main__():
+if __name__ == "__main__":
+    main()
