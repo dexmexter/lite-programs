@@ -1,7 +1,4 @@
-# Created by https://www.gitignore.io/api/linux,python
-# Edit at https://www.gitignore.io/?templates=linux,python
-
-### Linux ###
+## Linux ###
 *~
 
 # temporary files which can be created if a process still has a handle open of a deleted file
@@ -72,26 +69,10 @@ coverage.xml
 *.mo
 *.pot
 
-# Django stuff:
-*.log
-local_settings.py
-db.sqlite3
-
-# Flask stuff:
-instance/
-.webassets-cache
-
-# Scrapy stuff:
-.scrapy
-
 # Sphinx documentation
 docs/_build/
-
-# PyBuilder
-target/
-
-# Jupyter Notebook
-.ipynb_checkpoints
+docs/_static/
+docs/_templates/
 
 # IPython
 profile_default/
@@ -99,12 +80,6 @@ ipython_config.py
 
 # pyenv
 .python-version
-
-# celery beat schedule file
-celerybeat-schedule
-
-# SageMath parsed files
-*.sage.py
 
 # Environments
 .env
@@ -114,26 +89,3 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-
-# Spyder project settings
-.spyderproject
-.spyproject
-
-# Rope project settings
-.ropeproject
-
-# mkdocs documentation
-/site
-
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Pyre type checker
-.pyre/
-
-### Python Patch ###
-.venv/
-
-# End of https://www.gitignore.io/api/linux,python
