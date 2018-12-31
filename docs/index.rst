@@ -5,16 +5,21 @@
 
 Welcome to lite-programs's documentation!
 =========================================
-These are a collection of small games that I have coded. My eventual plan is to give each
-a one-player and two-player version as well as a menu to select from the whole list. From 
-there I have no idea, I'm making these as I begin to learn about programming so the 
-project complexity will likely grow in tandem with my own knowledge and skills.
+These are a collection of small games that I have coded. My eventual
+plan is to give each a one-player and two-player version as well as
+a menu to select from the whole list. From there I have no idea, I'm
+making these as I begin to learn about programming so the project
+complexity will likely grow in tandem with my own knowledge and skills.
 
 
 .. toctree::
    :maxdepth: 2
 
    all-about-me
+   games/battleship
+   games/hangman
+   games/rock_paper_scissors
+   games/yacht
 
 
 
