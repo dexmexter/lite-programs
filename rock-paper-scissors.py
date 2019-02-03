@@ -5,7 +5,7 @@ import game_functions as core
 
 score = {"wins":0, "losses":0}
 
-def main_game(score):
+def main_game():
     triangle = {"rock": "scissors", "scissors": "paper", "paper": "rock"}
     user_choice = input(core.print_slow("Welcome to the game. Please choose either rock, paper or scissors:"))
     valid_choice = list(triangle.keys())
@@ -22,7 +22,7 @@ def main_game(score):
     if triangle[user_choice] == cpu_choice:
         result = result_states["w"]
         score["wins"] += 1
-    
+
     elif user_choice == cpu_choice:
         result = result_states["t"]
     
@@ -34,12 +34,12 @@ def main_game(score):
     core.print_slow(". . .\n", 0.5)
     core.print_slow(cpu_choice + "\n")
     core.print_slow(result + "\n")
-    
-    return result
+    core.print_slow("The score is: ")
+    print(score)
 
 # TODO: Import game_functions instead of defining locally
 def main():
-    main_game(score)
+    main_game()
     core.play_again(main_game)
 
 if __name__ == "__main__":

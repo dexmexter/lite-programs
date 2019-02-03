@@ -26,10 +26,7 @@ def play_again(game_function):
         return #False
     else:
         print_slow("Sorry, didn't quite catch that...\n")
-        play_again()
-
-def main():
-    pass
+        play_again(game_function)
 
 if __name__ == "__main__":
-    main()
+    pass
